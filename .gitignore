@@ -1,0 +1,4 @@
+.ssh-local/
+gh_ed25519
+gh_ed25519.pub
+known_hosts

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather Climate Insight — The Control Plane for Operational Decision-Making</title>
+<meta name="description" content="WxCI deploys the BorealWave technology stack — explainable, wavelet-quantized edge AI — as a control plane for operational decision-making in defence, mining, and environmental monitoring.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F3C; --navy2:#10284A; --blue:#1E5AA8; --blue2:#2D7FF9;
+    --ink:#111418; --grey:#5C6673; --grey2:#8A94A6; --mist:#EEF2F7; --line:#D9E0EA;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Raleway',Georgia,serif;background:#fff;color:var(--ink);line-height:1.6;font-size:16px}
+  h1,h2,h3,h4{line-height:1.25;color:var(--navy);font-weight:700}
+  a{color:var(--blue);text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue2);margin-bottom:14px}
+  section{padding:72px 0}
+  .rule{width:56px;height:3px;background:var(--blue2);border:0;margin:18px 0 26px}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,31,60,.97);backdrop-filter:blur(6px)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+  .brand .wx{color:#fff;font-weight:800;font-size:20px;letter-spacing:.06em}
+  .brand .tag{color:#8FA9CC;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{color:#C9D6E8;text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.02em}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{background:var(--blue2);color:#fff !important;padding:8px 18px;border-radius:4px;font-weight:600}
+
+  /* HERO */
+  header.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 55%,#14335E 100%);color:#fff;padding:96px 0 88px}
+  .hero h1{color:#fff;font-size:44px;font-weight:800;max-width:820px}
+  .hero p.lead{color:#B9C9DE;font-size:19px;max-width:720px;margin-top:22px}
+  .hero .ctas{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:13px 28px;border-radius:4px;font-weight:600;font-size:15px;text-decoration:none;letter-spacing:.02em}
+  .btn-primary{background:var(--blue2);color:#fff}
+  .btn-primary:hover{background:#3E8DFB}
+  .btn-ghost{border:1px solid #47617F;color:#DDE7F3}
+  .btn-ghost:hover{border-color:#7D9BC0;color:#fff}
+  .hero-strip{margin-top:56px;display:flex;gap:34px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14);padding-top:26px}
+  .hero-strip div{font-size:13px;color:#9FB4CE}
+  .hero-strip b{display:block;color:#fff;font-size:15px;font-weight:700}
+
+  /* SECTIONS */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:28px 26px}
+  .card h3{font-size:17px;margin-bottom:10px}
+  .card p{color:var(--grey);font-size:14.5px}
+  .card .icon{width:40px;height:40px;border-radius:6px;background:var(--mist);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .card .icon span{font-size:18px;color:var(--blue)}
+  .card-ind{border-top:4px solid var(--blue2)}
+
+  /* PIPELINE */
+  .pipe{display:flex;align-items:stretch;gap:0;margin-top:30px;flex-wrap:wrap}
+  .pipe .step{flex:1;min-width:150px;background:var(--mist);border:1px solid var(--line);border-radius:6px;padding:16px 14px;margin-right:26px;position:relative}
+  .pipe .step:last-child{margin-right:0;background:var(--navy);border-color:var(--navy)}
+  .pipe .step:last-child h4{color:#fff}
+  .pipe .step:last-child p{color:#B9C9DE}
+  .pipe .step h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+  .pipe .step p{font-size:12.5px;color:var(--grey)}
+  .pipe .step:not(:last-child)::after{content:"→";position:absolute;right:-21px;top:42%;color:var(--grey2);font-size:17px;font-weight:700}
+
+  .feature{display:flex;gap:14px;margin-top:18px}
+  .feature .dot{flex:0 0 auto;width:34px;height:34px;border-radius:5px;background:var(--mist);color:var(--blue);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .feature p{font-size:14.5px;color:var(--grey)}
+  .feature b{color:var(--ink)}
+
+  .band{background:var(--mist)}
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;text-align:center}
+  .stat b{font-size:24px;color:var(--navy);font-weight:800;display:block}
+  .stat span{font-size:12.5px;color:var(--grey);letter-spacing:.03em}
+
+  blockquote{border-left:3px solid var(--blue2);padding:6px 0 6px 20px;color:var(--navy);font-size:18px;font-weight:500}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+  .contact-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:30px}
+  .contact-box b{display:block;color:var(--navy);margin-bottom:4px;font-size:14px}
+  .contact-box p{font-size:14px;color:var(--grey);margin-bottom:18px}
+
+  footer{background:var(--navy);color:#8FA9CC;padding:34px 0;font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer a{color:#C9D6E8}
+
+  @media(max-width:900px){
+    .hero h1{font-size:32px}
+    .cards,.two,.contact-grid{grid-template-columns:1fr}
+    .stat-row{grid-template-columns:repeat(2,1fr)}
+    .nav-links{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="wx">WXCI</span>
+      <span class="tag">Weather Climate Insight</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#stack">Technology</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#why">Why WxCI</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="kicker" style="color:#7FB2FF">BorealWave technology stack</span>
+    <h1>The control plane for operational decision-making.</h1>
+    <p class="lead">WxCI deploys explainable, wavelet-quantized AI at the edge — turning raw sensor streams into auditable decisions on sub-$300 hardware, with no cloud dependency. Sensor to decision in under 100 milliseconds.</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="#industries">Explore industries</a>
+      <a class="btn btn-ghost" href="#stack">How the stack works</a>
+    </div>
+    <div class="hero-strip">
+      <div><b>Explainable</b>Every decision carries an evidence trail</div>
+      <div><b>Field-updatable</b>Signed over-the-air logic updates in seconds</div>
+      <div><b>Sub-$300 edge</b>Microcontroller-class, solar-capable, expendable</div>
+      <div><b>Standards-native</b>CoT · SAPIENT · OGC SensorThings</div>
+    </div>
+  </div>
+</header>
+
+<section id="stack">
+  <div class="wrap">
+    <span class="kicker">The technology</span>
+    <h2 style="font-size:30px">One stack, from sensor to governed decision.</h2>
+    <hr class="rule">
+    <p style="max-width:760px;color:var(--grey)">The BorealWave stack is a neuro-symbolic decision engine: neural perception handles noisy real-world signals; a symbolic policy layer makes the call — every output explainable, versioned, and remotely governable.</p>
+    <div class="pipe">
+      <div class="step"><h4>Sense</h4><p>Acoustic · seismic · thermal · radar · industrial telemetry</p></div>
+      <div class="step"><h4>Extract</h4><p>Wavelet (DWT) multi-resolution features — tuned for transients</p></div>
+      <div class="step"><h4>Classify</h4><p>INT8 quantized neural networks, &lt;20 KB, runs on an MCU</p></div>
+      <div class="step"><h4>Decide</h4><p>Symbolic rule engine with versioned policy ontologies</p></div>
+      <div class="step"><h4>Govern</h4><p>Decision + confidence + rule trace → your C2, SCADA, or alerting plane</p></div>
+    </div>
+    <div class="two" style="margin-top:44px">
+      <div>
+        <h3 style="font-size:20px">Built for contested and constrained environments</h3>
+        <div class="feature"><div class="dot">✓</div><p><b style="color:var(--navy)">Explainable by construction.</b> Every detection carries a rule trace and calibrated confidence — the artifact regulators, auditors, and commanders actually require.</p></div>
+        <div class="feature"><div class="dot">✓</div><p><b style="color:var(--navy)">Updates in seconds, not retraining cycles.</b> Cryptographically signed over-the-air changes to decision logic across an entire deployed fleet.</p></div>
+        <div class="feature"><div class="dot">✓</div><p><b style="color:var(--navy)">Runs without the cloud.</b> Inference and policy execute on-device; jammed or denied comms degrade gracefully, not catastrophically.</p></div>
+      </div>
+      <div>
+        <h3 style="font-size:20px">WaveCore — the compression engine</h3>
+        <p style="color:var(--grey);font-size:14.5px;margin-bottom:12px">The same wavelet mathematics compresses the models themselves: weights stored in the wavelet domain, reconstructed layer-by-layer in integer-only arithmetic — 2–4× smaller models at equal accuracy, with runtime-adjustable fidelity tiers for battery-aware operations.</p>
+        <div class="feature"><div class="dot">—</div><p>Wavelet-domain weight format (.bwave) with multi-resolution precision allocation.</p></div>
+        <div class="feature"><div class="dot">—</div><p>Integer lifting-scheme runtime — no FPU, shift-and-add only.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="industries">
+  <div class="wrap">
+    <span class="kicker">Industries</span>
+    <h2 style="font-size:30px">Where the control plane earns its keep.</h2>
+    <hr class="rule">
+    <div class="cards">
+      <div class="card card-ind" style="border-top-color:var(--blue)">
+        <div class="icon"><span>◈</span></div>
+        <h3>Defence &amp; Security</h3>
+        <p>Sovereign, auditable sensor intelligence for contested environments: passive counter-drone detection meshes, minefield reconnaissance with quantified confidence, and policy-governed multi-sensor fusion — integrated with C2 via open standards and operating through jamming and GPS denial.</p>
+      </div>
+      <div class="card card-ind" style="border-top-color:var(--navy)">
+        <div class="icon"><span>⛏</span></div>
+        <h3>Mining</h3>
+        <p>Edge condition monitoring for rotating equipment, conveyors, and remote sites: wavelet feature extraction detects faults and transients early; policy ontologies enforce site-specific alarm logic; decisions arrive with evidence for safety case compliance. No connectivity required.</p>
+      </div>
+      <div class="card card-ind" style="border-top-color:var(--blue2)">
+        <div class="icon"><span>climate</span></div>
+        <h3>Environmental Monitoring</h3>
+        <p>The WxCI pedigree. Weather, climate, and hydrological signals — water levels, air quality, thermal and seismic events — classified on-device with explainable outputs, deployed at scale on solar-capable nodes for watersheds, infrastructure, and territory-scale networks.</p>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><b>&lt;100 ms</b><span>Sensor-to-decision latency</span></div>
+      <div class="stat"><b>&lt;$300</b><span>Edge node bill of materials</span></div>
+      <div class="stat"><b>Seconds</b><span>Fleet-wide policy updates, signed OTA</span></div>
+      <div class="stat"><b>100%</b><span>Decisions with evidence trail</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <span class="kicker">Why WxCI</span>
+    <h2 style="font-size:30px">Sovereign capability. Weather-forecasting pedigree.</h2>
+    <hr class="rule">
+    <div class="two">
+      <div>
+        <blockquote>Small enough to hand to a field crew. Honest enough to sign your name to.</blockquote>
+        <p style="color:var(--grey);margin-top:20px;font-size:15px">Weather Climate Insight Inc. is a Canadian-incorporated company. Our decision intelligence was born in environmental sensing — where forecasts, risk, and trust in a signal are the business — and hardened for the environments where connection to the cloud cannot be assumed: defence operations, remote mine sites, and territory-scale monitoring networks.</p>
+        <p style="color:var(--grey);margin-top:14px;font-size:15px">All IP vests in WxCI. Canadian-controlled, open-standards, no walled gardens.</p>
+      </div>
+      <div>
+        <div class="contact-box">
+          <b>Currently in flight</b>
+          <p style="margin-bottom:12px">• DND IDEaS minefield reconnaissance submission (Oct 2026, $850K ask)<br>• DND CUAS 2027 Urban Sandbox application (Dec 2026; live demonstration July 2027, Ottawa)<br>• IDEaS CFP6-CH14 sensor-fusion middleware (Mar 2027)</p>
+          <b style="margin-top:8px">Reference build</b>
+          <p>Running on commodity dual-core Cortex-M hardware with FreeRTOS — testable today, not slideware.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contact" style="padding-bottom:84px">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="kicker">Contact</span>
+      <h2 style="font-size:30px">Put the control plane to work.</h2>
+      <hr class="rule">
+      <p style="color:var(--grey);max-width:520px">Whether you operate sensors in a contested theatre, a mine site, or a watershed — we will show you the stack running on real hardware, with real decisions, in under an hour.</p>
+      <div style="margin-top:26px">
+        <a class="btn btn-primary" href="mailto:andrew.wiebe@weatherclimateinsight.com">andrew.wiebe@weatherclimateinsight.com</a>
+      </div>
+    </div>
+    <div>
+      <div class="contact-box">
+        <b>Weather Climate Insight Inc.</b>
+        <p>Explainable edge intelligence — sovereign by design.</p>
+        <b>Pilot programs</b>
+        <p>We run 90-day field pilots: one site, your sensors, a working control plane. Defence, mining, and environmental operators welcome.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Weather Climate Insight Inc. All rights reserved.</div>
+    <div><a href="mailto:andrew.wiebe@weatherclimateinsight.com">andrew.wiebe@weatherclimateinsight.com</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
