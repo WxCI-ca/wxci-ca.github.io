@@ -120,16 +120,16 @@
   <div class="wrap">
     <span class="kicker" style="color:#7FB2FF">BorealWave technology stack</span>
     <h1>The control plane for operational decision-making.</h1>
-    <p class="lead">WxCI deploys explainable, wavelet-quantized AI at the edge — turning raw sensor streams into auditable decisions on sub-$300 hardware, with no cloud dependency. Sensor to decision in under 100 milliseconds.</p>
+    <p class="lead">WxCI is building explainable, wavelet-quantized AI at the edge — turning raw sensor streams into auditable decisions on microcontroller-class hardware, with no cloud dependency. Host-validated today; hardware bring-up and <100 ms latency measurement are our current engineering milestones.</p>
     <div class="ctas">
       <a class="btn btn-primary" href="#industries">Explore industries</a>
       <a class="btn btn-ghost" href="#stack">How the stack works</a>
     </div>
     <div class="hero-strip">
-      <div><b>Explainable</b>Every decision carries an evidence trail</div>
-      <div><b>Field-updatable</b>Signed over-the-air logic updates in seconds</div>
-      <div><b>Sub-$300 edge</b>Microcontroller-class, solar-capable, expendable</div>
-      <div><b>Standards-native</b>CoT · SAPIENT · OGC SensorThings</div>
+      <div><b>Explainable</b>Every decision carries a rule trace (implemented &amp; tested)</div>
+      <div><b>Field-updatable</b>Hash-verified OTA pipeline; signatures &amp; radio next</div>
+      <div><b>MCU-class edge</b>Dual-core Cortex-M design, solar-capable by design</div>
+      <div><b>Standards roadmap</b>CoT · SAPIENT · OGC SensorThings targets</div>
     </div>
   </div>
 </header>
@@ -141,24 +141,24 @@
     <hr class="rule">
     <p style="max-width:760px;color:var(--grey)">The BorealWave stack is a neuro-symbolic decision engine: neural perception handles noisy real-world signals; a symbolic policy layer makes the call — every output explainable, versioned, and remotely governable.</p>
     <div class="pipe">
-      <div class="step"><h4>Sense</h4><p>Acoustic · seismic · thermal · radar · industrial telemetry</p></div>
+      <div class="step"><h4>Sense</h4><p>Acoustic · seismic · thermal · environmental telemetry (driver integration in progress)</p></div>
       <div class="step"><h4>Extract</h4><p>Wavelet (DWT) multi-resolution features — tuned for transients</p></div>
-      <div class="step"><h4>Classify</h4><p>INT8 quantized neural networks, &lt;20 KB, runs on an MCU</p></div>
+      <div class="step"><h4>Classify</h4><p>INT8 quantized networks, &lt;20 KB — on-MCU inference is the active build item</p></div>
       <div class="step"><h4>Decide</h4><p>Symbolic rule engine with versioned policy ontologies</p></div>
       <div class="step"><h4>Govern</h4><p>Decision + confidence + rule trace → your C2, SCADA, or alerting plane</p></div>
     </div>
     <div class="two" style="margin-top:44px">
       <div>
         <h3 style="font-size:20px">Built for contested and constrained environments</h3>
-        <div class="feature"><div class="dot">✓</div><p><b style="color:var(--navy)">Explainable by construction.</b> Every detection carries a rule trace and calibrated confidence — the artifact regulators, auditors, and commanders actually require.</p></div>
-        <div class="feature"><div class="dot">✓</div><p><b style="color:var(--navy)">Updates in seconds, not retraining cycles.</b> Cryptographically signed over-the-air changes to decision logic across an entire deployed fleet.</p></div>
-        <div class="feature"><div class="dot">✓</div><p><b style="color:var(--navy)">Runs without the cloud.</b> Inference and policy execute on-device; jammed or denied comms degrade gracefully, not catastrophically.</p></div>
+        <div class="feature"><div class="dot">✓</div><p><b style="color:var(--navy)">Explainable by construction.</b> Every detection carries a rule trace and a versioned-policy decision record — the artifact regulators, auditors, and commanders actually require.</p></div>
+        <div class="feature"><div class="dot">✓</div><p><b style="color:var(--navy)">Logic updates, not retraining cycles.</b> A verified over-the-air channel for ontology and model updates (CRC32 + SHA-256 today; cryptographic signatures and radio transport are the next integration items).</p></div>
+        <div class="feature"><div class="dot">✓</div><p><b style="color:var(--navy)">Runs without the cloud.</b> Policy and decisions execute on-device by design; degraded-comms behaviour is a Stage-1 test criterion.</p></div>
       </div>
       <div>
         <h3 style="font-size:20px">WaveCore — the compression engine</h3>
-        <p style="color:var(--grey);font-size:14.5px;margin-bottom:12px">The same wavelet mathematics compresses the models themselves: weights stored in the wavelet domain, reconstructed layer-by-layer in integer-only arithmetic — 2–4× smaller models at equal accuracy, with runtime-adjustable fidelity tiers for battery-aware operations.</p>
+        <p style="color:var(--grey);font-size:14.5px;margin-bottom:12px">The same wavelet mathematics targets the models themselves: weights stored in the wavelet domain (.bwave format, implemented and verified with a 93-check round-trip suite), reconstructed layer-by-layer in integer-only arithmetic. Large-model compression payoff (2–4× targets) is our Stage-2 research objective.</p>
         <div class="feature"><div class="dot">—</div><p>Wavelet-domain weight format (.bwave) with multi-resolution precision allocation.</p></div>
-        <div class="feature"><div class="dot">—</div><p>Integer lifting-scheme runtime — no FPU, shift-and-add only.</p></div>
+        <div class="feature"><div class="dot">—</div><p>Integer lifting-scheme runtime — no FPU, shift-and-add only (Stage-2 design).</p></div>
       </div>
     </div>
   </div>
@@ -173,7 +173,7 @@
       <div class="card card-ind" style="border-top-color:var(--blue)">
         <div class="icon"><span>◈</span></div>
         <h3>Defence &amp; Security</h3>
-        <p>Sovereign, auditable sensor intelligence for contested environments: passive counter-drone detection meshes, minefield reconnaissance with quantified confidence, and policy-governed multi-sensor fusion — integrated with C2 via open standards and operating through jamming and GPS denial.</p>
+        <p>Sovereign, auditable sensor intelligence for contested environments: our detection/classification core is host-validated, and mesh, C2 integration, and GNSS-denied behaviour are the active engineering roadmap — currently proposed through DND IDEaS programs.</p>
       </div>
       <div class="card card-ind" style="border-top-color:var(--navy)">
         <div class="icon"><span>⛏</span></div>
@@ -183,14 +183,14 @@
       <div class="card card-ind" style="border-top-color:var(--blue2)">
         <div class="icon"><span>climate</span></div>
         <h3>Environmental Monitoring</h3>
-        <p>The WxCI pedigree. Weather, climate, and hydrological signals — water levels, air quality, thermal and seismic events — classified on-device with explainable outputs, deployed at scale on solar-capable nodes for watersheds, infrastructure, and territory-scale networks.</p>
+        <p>The WxCI pedigree. Weather, climate, and hydrological signals — water levels, air quality, thermal and seismic events — classified on-device by design, with explainable outputs — reference build validated in host testing; pilot deployments under discussion.</p>
       </div>
     </div>
     <div class="stat-row">
-      <div class="stat"><b>&lt;100 ms</b><span>Sensor-to-decision latency</span></div>
-      <div class="stat"><b>&lt;$300</b><span>Edge node bill of materials</span></div>
-      <div class="stat"><b>Seconds</b><span>Fleet-wide policy updates, signed OTA</span></div>
-      <div class="stat"><b>100%</b><span>Decisions with evidence trail</span></div>
+      <div class="stat"><b>&lt;100 ms</b><span>Sensor-to-decision target (benchmark in progress)</span></div>
+      <div class="stat"><b>~$300</b><span>Prototype edge node BOM (engineering estimate)</span></div>
+      <div class="stat"><b>Verified</b><span>OTA frame integrity: CRC32 + SHA-256 (FIPS vectors)</span></div>
+      <div class="stat"><b>100%</b><span>Decisions carry a rule trace (tested)</span></div>
     </div>
   </div>
 </section>
@@ -211,7 +211,7 @@
           <b>Currently in flight</b>
           <p style="margin-bottom:12px">• DND IDEaS minefield reconnaissance submission (Oct 2026, $850K ask)<br>• DND CUAS 2027 Urban Sandbox application (Dec 2026; live demonstration July 2027, Ottawa)<br>• IDEaS CFP6-CH14 sensor-fusion middleware (Mar 2027)</p>
           <b style="margin-top:8px">Reference build</b>
-          <p>Running on commodity dual-core Cortex-M hardware with FreeRTOS — testable today, not slideware.</p>
+          <p>Builds clean today on the official Portenta H7 toolchain with FreeRTOS and CMSIS-DSP vendored, covered by 8 host test files (all passing, run log committed) — the on-device bench run is the next milestone. Evidence register: docs/AUDIT_CLAIMS_GAPS.md.</p>
         </div>
       </div>
     </div>
@@ -226,7 +226,7 @@
       <hr class="rule">
       <p style="color:var(--grey);max-width:520px">Whether you operate sensors in a contested theatre, a mine site, or a watershed — we will show you the stack running on real hardware, with real decisions, in under an hour.</p>
       <div style="margin-top:26px">
-        <a class="btn btn-primary" href="mailto:andrew.wiebe@weatherclimateinsight.com">andrew.wiebe@weatherclimateinsight.com</a>
+        <a class="btn btn-primary" href="mailto:info@wxci.ca">info@wxci.ca</a>
       </div>
     </div>
     <div>
@@ -243,7 +243,7 @@
 <footer>
   <div class="wrap">
     <div>© 2026 Weather Climate Insight Inc. All rights reserved.</div>
-    <div><a href="mailto:andrew.wiebe@weatherclimateinsight.com">andrew.wiebe@weatherclimateinsight.com</a></div>
+    <div><a href="mailto:info@wxci.ca">info@wxci.ca</a></div>
   </div>
 </footer>
 
