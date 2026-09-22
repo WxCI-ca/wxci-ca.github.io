@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Weather Climate Insight — The Control Plane for Operational Decision-Making</title>
-<meta name="description" content="WxCI deploys the BorealWave technology stack — explainable, wavelet-quantized edge AI — as a control plane for operational decision-making in defence, mining, and environmental monitoring.">
+<meta name="description" content="WxCI deploys the BorealWave technology stack — explainable, multi-resolution-quantized edge AI — as a control plane for operational decision-making in defence, mining, and environmental monitoring.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -120,7 +120,7 @@
   <div class="wrap">
     <span class="kicker" style="color:#7FB2FF">BorealWave technology stack</span>
     <h1>The control plane for operational decision-making.</h1>
-    <p class="lead">WxCI is building explainable, wavelet-quantized AI at the edge — turning raw sensor streams into auditable decisions on microcontroller-class hardware, with no cloud dependency. Host-validated today; hardware bring-up and <100 ms latency measurement are our current engineering milestones.</p>
+    <p class="lead">WxCI is building explainable, multi-resolution-quantized AI at the edge — turning raw sensor streams into auditable decisions on microcontroller-class hardware, with no cloud dependency. Host-validated today; hardware bring-up and <100 ms latency measurement are our current engineering milestones.</p>
     <div class="ctas">
       <a class="btn btn-primary" href="#industries">Explore industries</a>
       <a class="btn btn-ghost" href="#stack">How the stack works</a>
@@ -142,7 +142,7 @@
     <p style="max-width:760px;color:var(--grey)">The BorealWave stack is a neuro-symbolic decision engine: neural perception handles noisy real-world signals; a symbolic policy layer makes the call — every output explainable, versioned, and remotely governable.</p>
     <div class="pipe">
       <div class="step"><h4>Sense</h4><p>Acoustic · seismic · thermal · environmental telemetry (driver integration in progress)</p></div>
-      <div class="step"><h4>Extract</h4><p>Wavelet (DWT) multi-resolution features — tuned for transients</p></div>
+      <div class="step"><h4>Extract</h4><p>Multi-resolution transform features — tuned for transients</p></div>
       <div class="step"><h4>Classify</h4><p>INT8 quantized networks, &lt;20 KB — on-MCU inference is the active build item</p></div>
       <div class="step"><h4>Decide</h4><p>Symbolic rule engine with versioned policy ontologies</p></div>
       <div class="step"><h4>Govern</h4><p>Decision + confidence + rule trace → your C2, SCADA, or alerting plane</p></div>
@@ -156,9 +156,9 @@
       </div>
       <div>
         <h3 style="font-size:20px">WaveCore — the compression engine</h3>
-        <p style="color:var(--grey);font-size:14.5px;margin-bottom:12px">The same wavelet mathematics targets the models themselves: weights stored in the wavelet domain (.bwave format, implemented and verified with a 93-check round-trip suite), reconstructed layer-by-layer in integer-only arithmetic. Large-model compression payoff (2–4× targets) is our Stage-2 research objective.</p>
-        <div class="feature"><div class="dot">—</div><p>Wavelet-domain weight format (.bwave) with multi-resolution precision allocation.</p></div>
-        <div class="feature"><div class="dot">—</div><p>Integer lifting-scheme runtime — no FPU, shift-and-add only (Stage-2 design).</p></div>
+        <p style="color:var(--grey);font-size:14.5px;margin-bottom:12px">The same multi-resolution transform mathematics targets the models themselves: weights stored in a multi-resolution representation (.bwave format, implemented and verified with a 93-check round-trip suite), reconstructed layer-by-layer in integer-only arithmetic. Large-model compression payoff (2–4× targets) is our Stage-2 research objective.</p>
+        <div class="feature"><div class="dot">—</div><p>Multi-resolution weight format (.bwave) with scale-wise precision allocation.</p></div>
+        <div class="feature"><div class="dot">—</div><p>Integer-only inverse transform runtime — no FPU, shift-and-add only (Stage-2 design).</p></div>
       </div>
     </div>
   </div>
@@ -178,7 +178,7 @@
       <div class="card card-ind" style="border-top-color:var(--navy)">
         <div class="icon"><span>⛏</span></div>
         <h3>Mining</h3>
-        <p>Edge condition monitoring for rotating equipment, conveyors, and remote sites: wavelet feature extraction detects faults and transients early; policy ontologies enforce site-specific alarm logic; decisions arrive with evidence for safety case compliance. No connectivity required.</p>
+        <p>Edge condition monitoring for rotating equipment, conveyors, and remote sites: multi-resolution feature extraction detects faults and transients early; policy ontologies enforce site-specific alarm logic; decisions arrive with evidence for safety case compliance. No connectivity required.</p>
       </div>
       <div class="card card-ind" style="border-top-color:var(--blue2)">
         <div class="icon"><span>climate</span></div>
@@ -211,7 +211,7 @@
           <b>Currently in flight</b>
           <p style="margin-bottom:12px">• DND IDEaS minefield reconnaissance submission (Oct 2026, $850K ask)<br>• DND CUAS 2027 Urban Sandbox application (Dec 2026; live demonstration July 2027, Ottawa)<br>• IDEaS CFP6-CH14 sensor-fusion middleware (Mar 2027)</p>
           <b style="margin-top:8px">Reference build</b>
-          <p>Builds clean today on the official Portenta H7 toolchain with FreeRTOS and CMSIS-DSP vendored, covered by 8 host test files (all passing, run log committed) — the on-device bench run is the next milestone. Evidence register: docs/AUDIT_CLAIMS_GAPS.md.</p>
+          <p>Builds clean today on the official Portenta H7 toolchain with a real-time OS and a fixed-point DSP library vendored, covered by 8 host test files (all passing, run log committed) — the on-device bench run is the next milestone. Evidence register: docs/AUDIT_CLAIMS_GAPS.md.</p>
         </div>
       </div>
     </div>
